@@ -3,6 +3,16 @@ from time import strftime
 FILEPATH = 'todos.txt'
 
 
+def get_todos():
+    """
+    Creates list based on previous todos
+    :return:
+    """
+    with open(FILEPATH, 'r') as todos_file:
+        todo_list = todos_file.readlines()
+    return todo_list
+
+
 def update_file(todos):
     """
     Updates todos.txt file with new values of todo_list.

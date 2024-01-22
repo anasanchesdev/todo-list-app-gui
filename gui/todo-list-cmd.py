@@ -1,13 +1,12 @@
-from functions import update_file, index_from_todo, get_time
+import functions
 
 ERROR_MSG = "You must type a valid index or there isn't to-dos to be edited/completed. Please, try again."
 ERRORS = (ValueError, TypeError, IndexError)
 
-with open('todos.txt', 'r') as todos_file:  # creates todo_list based on previous todos
-    todo_list = todos_file.readlines()
+todo_list = functions.get_todos()
 
 print('🗹 TO-DO APP 🗹')
-print(get_time())
+print(functions.get_time())
 
 while True:
 
@@ -23,7 +22,7 @@ while True:
             continue
 
         todo_list.append(todo_added)
-        update_file(todo_list)
+        functions.update_file(todo_list)
         print(f'\nTo-do "{todo_added.strip()}" added!')
 
     elif user_input.startswith('show'):
@@ -38,11 +37,11 @@ while True:
     elif user_input.startswith('edit'):
 
         try:
-            edited_todo_index = index_from_todo(user_input[5:])
+            edited_todo_index = functions.index_from_todo(user_input[5:])
             edited_todo = todo_list[edited_todo_index]
             new_edit_todo = input('Enter the new todo:\n > ').capitalize() + '\n'
             todo_list[edited_todo_index] = new_edit_todo
-            update_file(todo_list)
+            functions.update_file(todo_list)
             print(f'\n"{edited_todo.strip()}" changed to "{new_edit_todo.strip()}" successfully!"')
 
         except ERRORS:
@@ -52,10 +51,10 @@ while True:
     elif user_input.startswith('complete'):
 
         try:
-            completed_todo_index = index_from_todo(user_input[9:])
+            completed_todo_index = functions.index_from_todo(user_input[9:])
             completed_todo = todo_list[completed_todo_index]
             todo_list.pop(completed_todo_index)
-            update_file(todo_list)
+            functions.update_file(todo_list)
             print(f'You completed "{completed_todo.strip()}"! Yay!!')
 
         except ERRORS:
