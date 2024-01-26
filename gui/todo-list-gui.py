@@ -5,6 +5,7 @@ ERROR_MSG = 'You must select an item before trying to edit/complete it.'
 TITLE = 'Todo List App'
 
 todo_list = f.get_todos()
+clock_label = ps.Text('', key='clock')
 label = ps.Text('Type in a To-do:')
 input_box = ps.InputText(tooltip='Enter a todo', key='add')
 add_button = ps.Button('Add')
@@ -16,6 +17,7 @@ list_box = ps.Listbox(values=todo_list, key='todos_list', enable_events=True, si
                                                                                                      'edit')
 
 window = ps.Window(TITLE, font=('Helvetica', 13), layout=[
+    [clock_label],
     [label],
     [input_box, add_button],
     [list_box, edit_button, complete_button],
@@ -24,9 +26,8 @@ window = ps.Window(TITLE, font=('Helvetica', 13), layout=[
 
 
 while True:
-    events, values = window.read()
-
-    print(f'EVENT: {events}\nVALUES: {values}')
+    events, values = window.read(timeout=200)
+    window['clock'].update(value=f.get_time())
 
     if events == 'Add':
         new_todo = values['add']
@@ -36,7 +37,6 @@ while True:
 
     #  text box value changes according to the selected list item
     elif events == 'todos_list':
-        print(values['todos_list'])
         window['add'].update(value=values['todos_list'][0].strip())
 
     elif events == 'Complete':
