@@ -1,8 +1,11 @@
 import functions as f
 import PySimpleGUI as ps
 
+ERROR_MSG = 'You must select an item before trying to edit/complete it.'
+
 todo_list = f.get_todos()
 label = ps.Text('Type in a To-do:')
+error_label = ps.Text('', key='error_label')
 input_box = ps.InputText(tooltip='Enter a todo', key='add')
 add_button = ps.Button('Add')
 edit_button = ps.Button('Edit')
@@ -16,7 +19,7 @@ window = ps.Window('Todo List App', font=('Helvetica', 13), layout=[
     [label],
     [input_box, add_button],
     [list_box, edit_button, complete_button],
-    [exit_button]
+    [exit_button, error_label]
 ])
 
 
@@ -37,13 +40,26 @@ while True:
         window['add'].update(value=values['todos_list'][0].strip())
 
     elif events == 'Complete':
-        completed_todo = values['todos_list'][0]
+
+        try:
+            completed_todo = values['todos_list'][0]
+        except IndexError:
+            window['error_label'].update(value=ERROR_MSG, text_color='red', font='Arial')
+            continue
+
         todo_list.remove(completed_todo)
         f.update_file(todo_list)
         window['todos_list'].update(values=todo_list)
         window['add'].update(value='')
 
     elif events == 'Edit':
+
+        try:
+            completed_todo = values['todos_list'][0]
+        except IndexError:
+            window['error_label'].update(value=ERROR_MSG, text_color='red', font='Arial')
+            continue
+
         to_edit = values['todos_list'][0]
         todo_index = todo_list.index(to_edit)
         new_todo = values['add']
