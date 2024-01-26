@@ -37,7 +37,7 @@ def get_time():
     """
     Gets time and formats into string.
     """
-    n = strftime('= %A, %b %d, %Y %H:%M:%S =')
+    n = strftime('%A, %b %d, %Y %H:%M:%S')
     return n
 
 
