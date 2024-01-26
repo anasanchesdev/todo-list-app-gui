@@ -37,7 +37,11 @@ while True:
 
     #  text box value changes according to the selected list item
     elif events == 'todos_list':
-        window['add'].update(value=values['todos_list'][0].strip())
+
+        try:
+            window['add'].update(value=values['todos_list'][0].strip())
+        except IndexError:
+            continue
 
     elif events == 'Complete':
 
