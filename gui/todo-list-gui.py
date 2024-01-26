@@ -4,15 +4,16 @@ import PySimpleGUI as ps
 ERROR_MSG = 'You must select an item before trying to edit/complete it.'
 TITLE = 'Todo List App'
 
+ps.theme('DarkGrey6')
 todo_list = f.get_todos()
 clock_label = ps.Text('', key='clock')
 label = ps.Text('Type in a To-do:')
-input_box = ps.InputText(tooltip='Enter a todo', key='add')
+input_box = ps.InputText(tooltip='Enter a todo', key='add', size=37)
 add_button = ps.Button('Add')
 edit_button = ps.Button('Edit')
 exit_button = ps.Button('Exit', tooltip='Exit the program')
 complete_button = ps.Button('Complete')
-list_box = ps.Listbox(values=todo_list, key='todos_list', enable_events=True, size=(40, 10), tooltip='Select a TO-DO '
+list_box = ps.Listbox(values=todo_list, key='todos_list', enable_events=True, size=(36, 10), tooltip='Select a TO-DO '
                                                                                                      'to complete or '
                                                                                                      'edit')
 
