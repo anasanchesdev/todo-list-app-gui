@@ -15,7 +15,7 @@ ps.theme_button_color(DEFAULT_COLOR)
 
 logo_img = ps.Image(source='images/logo.png', size=(100, 100), pad=0)
 logo_text = ps.Text('TODO LIST APP', font=LOGO_FONT, pad=0, text_color='#384ff5')
-
+dev_credits = ps.Text('by: anasanchesdev', font=(DEFAULT_FONT, 8), justification='right', pad=((50, 0), (0, 0)))
 
 clock_label = ps.Text('', key='clock', font=(DEFAULT_FONT, 10))
 label = ps.Text('Type in a To-do:', font=(DEFAULT_FONT, 15))
@@ -48,7 +48,7 @@ window = ps.Window(TITLE, font=('Helvetica', 13), layout=[
     [label],
     [input_box, add_button],
     [left_column, right_column],
-    [exit_button, clock_label]
+    [exit_button, clock_label, dev_credits]
 ])
 
 
