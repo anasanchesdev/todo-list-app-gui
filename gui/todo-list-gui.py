@@ -2,10 +2,10 @@ import functions as f
 import PySimpleGUI as ps
 
 ERROR_MSG = 'You must select an item before trying to edit/complete it.'
+TITLE = 'Todo List App'
 
 todo_list = f.get_todos()
 label = ps.Text('Type in a To-do:')
-error_label = ps.Text('', key='error_label')
 input_box = ps.InputText(tooltip='Enter a todo', key='add')
 add_button = ps.Button('Add')
 edit_button = ps.Button('Edit')
@@ -15,11 +15,11 @@ list_box = ps.Listbox(values=todo_list, key='todos_list', enable_events=True, si
                                                                                                      'to complete or '
                                                                                                      'edit')
 
-window = ps.Window('Todo List App', font=('Helvetica', 13), layout=[
+window = ps.Window(TITLE, font=('Helvetica', 13), layout=[
     [label],
     [input_box, add_button],
     [list_box, edit_button, complete_button],
-    [exit_button, error_label]
+    [exit_button]
 ])
 
 
@@ -44,7 +44,7 @@ while True:
         try:
             completed_todo = values['todos_list'][0]
         except IndexError:
-            window['error_label'].update(value=ERROR_MSG, text_color='red', font='Arial')
+            ps.popup(ERROR_MSG, font='Arial', title=TITLE)
             continue
 
         todo_list.remove(completed_todo)
@@ -57,7 +57,7 @@ while True:
         try:
             completed_todo = values['todos_list'][0]
         except IndexError:
-            window['error_label'].update(value=ERROR_MSG, text_color='red', font='Arial')
+            ps.popup(ERROR_MSG, font='Arial', title=TITLE)
             continue
 
         to_edit = values['todos_list'][0]
