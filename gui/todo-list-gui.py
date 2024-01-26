@@ -51,7 +51,7 @@ while True:
         f.update_file(todo_list)
         window['todos_list'].update(values=todo_list)
 
-    elif events == ps.WIN_CLOSED:
+    elif events == ps.WIN_CLOSED or events == 'Exit':
         break
 
 window.close()
