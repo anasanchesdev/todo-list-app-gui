@@ -54,9 +54,10 @@ window = ps.Window(TITLE, font=('Helvetica', 13), layout=[
 
 while True:
     events, values = window.read(timeout=200)
+    window['add'].bind('<Return>', '_Enter')
     window['clock'].update(value=f.get_time())
 
-    if events == 'Add':
+    if events == 'Add' or events == "add" + "_Enter":
         if not values['add']:
             continue
         new_todo = values['add']
