@@ -57,6 +57,8 @@ while True:
     window['clock'].update(value=f.get_time())
 
     if events == 'Add':
+        if not values['add']:
+            continue
         new_todo = values['add']
         todo_list.append(new_todo + '\n')
         f.update_file(todo_list)
