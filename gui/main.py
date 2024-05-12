@@ -64,6 +64,7 @@ while True:
         todo_list.append(new_todo + '\n')
         f.update_file(todo_list)
         window['todos_list'].update(values=todo_list)
+        window['add'].update(value='')
 
     #  text box value changes according to the selected list item
     elif events == 'todos_list':
