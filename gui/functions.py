@@ -1,4 +1,9 @@
 from time import strftime
+import os
+
+if not os.path.exists('todos.txt'):
+    with open('todos.txt', 'w') as file:
+        pass
 
 FILEPATH = 'todos.txt'
 
