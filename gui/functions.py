@@ -1,5 +1,5 @@
 from time import strftime
-import os
+import os, sys
 
 if not os.path.exists('todos.txt'):
     with open('todos.txt', 'w') as file:
@@ -36,6 +36,13 @@ def index_from_todo(index_input):
     todo_index = int(index_input)
     todo_index -= 1
     return todo_index
+
+
+def get_path(filename):
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, filename)
+    else:
+        return "icons/" + filename
 
 
 def get_time():
