@@ -1,5 +1,6 @@
 from time import strftime
-import os, sys
+import os
+import sys
 
 if not os.path.exists('todos.txt'):
     with open('todos.txt', 'w') as file:
@@ -38,11 +39,15 @@ def index_from_todo(index_input):
     return todo_index
 
 
-def get_path(filename):
-    if hasattr(sys, "_MEIPASS"):
-        return os.path.join(sys._MEIPASS, filename)
-    else:
-        return "icons/" + filename
+def get_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 def get_time():

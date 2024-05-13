@@ -13,7 +13,7 @@ DEFAULT_COLOR = '#384ff5'
 ps.theme('TanBlue')
 ps.theme_button_color(DEFAULT_COLOR)
 
-logo_img = ps.Image(source='images/logo.png', size=(100, 100), pad=0)
+logo_img = ps.Image(source=f.get_path('logo.png'), size=(100, 100), pad=0)
 logo_text = ps.Text('TODO LIST APP', font=LOGO_FONT, pad=0, text_color='#384ff5')
 dev_credits = ps.Text('by: anasanchesdev', font=(DEFAULT_FONT, 8), justification='right', pad=((50, 0), (0, 0)))
 
@@ -21,16 +21,16 @@ clock_label = ps.Text('', key='clock', font=(DEFAULT_FONT, 10))
 label = ps.Text('Type in a To-do:', font=(DEFAULT_FONT, 15))
 input_box = ps.InputText(tooltip='Enter a todo', key='add', size=37, font=INPUT_FONT)
 
-add_button = ps.Button(image_source='images/add.png', key='Add', image_size=BUTTON_SIZE, pad=((18, 0), (0, 0)),
+add_button = ps.Button(image_source=f.get_path('add.png'), key='Add', image_size=BUTTON_SIZE, pad=((18, 0), (0, 0)),
                        tooltip='Add a TO-DO', mouseover_colors=BUTTON_COLOR_MOUSEOVER)
 
-edit_button = ps.Button(image_source='images/edit.png', key='Edit', image_size=BUTTON_SIZE, pad=5,
+edit_button = ps.Button(image_source=f.get_path('edit.png'), key='Edit', image_size=BUTTON_SIZE, pad=5,
                         tooltip='Edit a TO-DO', mouseover_colors=BUTTON_COLOR_MOUSEOVER)
 
 exit_button = ps.Button('EXIT', tooltip='Exit the program', font=(DEFAULT_FONT, 12),
                         mouseover_colors=BUTTON_COLOR_MOUSEOVER)
 
-complete_button = ps.Button(image_source='images/complete.png', key='Complete', image_size=BUTTON_SIZE, pad=5,
+complete_button = ps.Button(image_source=f.get_path('complete.png'), key='Complete', image_size=BUTTON_SIZE, pad=5,
                             tooltip='Complete a TO-DO', mouseover_colors=BUTTON_COLOR_MOUSEOVER)
 
 todo_list = f.get_todos()
